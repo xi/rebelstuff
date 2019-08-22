@@ -4,7 +4,7 @@ from . import models
 
 
 class StuffAdmin(admin.ModelAdmin):
-    list_display = ['name', 'amount']
+    list_display = ['name', 'amount', 'available']
     search_fields = ['name']
 
 

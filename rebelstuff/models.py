@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -9,6 +11,19 @@ class Stuff(models.Model):
 
     def __str__(self):
         return self.name
+
+    def available(self):
+        day = datetime.date.today()
+
+        items = BookingItem.objects.filter(
+            booking__start__lte=day,
+            booking__end__gte=day,
+            stuff=self,
+        )
+
+        agg = items.aggregate(models.Sum('amount'))
+        booked = agg['amount__sum'] or 0
+        return self.amount - booked
 
 
 class Booking(models.Model):
