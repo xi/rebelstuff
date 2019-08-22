@@ -20,53 +20,53 @@ msgstr ""
 
 #: rebelstuff/admin.py:12
 msgid "Home"
-msgstr ""
+msgstr "Start"
 
 #: rebelstuff/models.py:9 rebelstuff/models.py:35
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: rebelstuff/models.py:10
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: rebelstuff/models.py:11 rebelstuff/models.py:67
 msgid "Amount"
-msgstr ""
+msgstr "Menge"
 
 #: rebelstuff/models.py:36
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: rebelstuff/models.py:37
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: rebelstuff/models.py:38
 msgid "End"
-msgstr ""
+msgstr "Ende"
 
 #: rebelstuff/models.py:39
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: rebelstuff/models.py:40
 msgid "waiting"
-msgstr ""
+msgstr "warten"
 
 #: rebelstuff/models.py:41
 msgid "delivered"
-msgstr ""
+msgstr "ausgeliehen"
 
 #: rebelstuff/models.py:42
 msgid "returned"
-msgstr ""
+msgstr "zurück"
 
 #: rebelstuff/models.py:54
 msgid "Cannot be before start."
-msgstr ""
+msgstr "Kann nicht vor dem Start sein"
 
 #: rebelstuff/models.py:74
 #, python-format
 msgid "Not enough of this stuff. Only %i left."
-msgstr ""
+msgstr "Nicht genug Zeug. Nur noch %i verfügbar."
