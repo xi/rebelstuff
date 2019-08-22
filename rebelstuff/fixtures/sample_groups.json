@@ -1,0 +1,85 @@
+[
+{
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+        "name": "stuffer",
+        "permissions": [
+            [
+                "add_stuff",
+                "rebelstuff",
+                "stuff"
+            ],
+            [
+                "change_stuff",
+                "rebelstuff",
+                "stuff"
+            ],
+            [
+                "delete_stuff",
+                "rebelstuff",
+                "stuff"
+            ],
+            [
+                "view_stuff",
+                "rebelstuff",
+                "stuff"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+        "name": "booker",
+        "permissions": [
+            [
+                "add_booking",
+                "rebelstuff",
+                "booking"
+            ],
+            [
+                "change_booking",
+                "rebelstuff",
+                "booking"
+            ],
+            [
+                "delete_booking",
+                "rebelstuff",
+                "booking"
+            ],
+            [
+                "view_booking",
+                "rebelstuff",
+                "booking"
+            ],
+            [
+                "add_bookingitem",
+                "rebelstuff",
+                "bookingitem"
+            ],
+            [
+                "change_bookingitem",
+                "rebelstuff",
+                "bookingitem"
+            ],
+            [
+                "delete_bookingitem",
+                "rebelstuff",
+                "bookingitem"
+            ],
+            [
+                "view_bookingitem",
+                "rebelstuff",
+                "bookingitem"
+            ],
+            [
+                "view_stuff",
+                "rebelstuff",
+                "stuff"
+            ]
+        ]
+    }
+}
+]
