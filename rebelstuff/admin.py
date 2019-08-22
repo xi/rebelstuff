@@ -1,6 +1,15 @@
 from django.contrib import admin
+from django.contrib.auth import models as auth_models
+from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import gettext_lazy as _
 
 from . import models
+
+
+class Site(admin.AdminSite):
+    site_header = 'RebelStuff'
+    site_title = 'RebelStuff'
+    index_title = _('Home')
 
 
 class StuffAdmin(admin.ModelAdmin):
@@ -20,5 +29,8 @@ class BookingAdmin(admin.ModelAdmin):
     inlines = [BookingItemInline]
 
 
-admin.site.register(models.Stuff, StuffAdmin)
-admin.site.register(models.Booking, BookingAdmin)
+site = Site()
+site.register(auth_models.User, UserAdmin)
+site.register(auth_models.Group)
+site.register(models.Stuff, StuffAdmin)
+site.register(models.Booking, BookingAdmin)
