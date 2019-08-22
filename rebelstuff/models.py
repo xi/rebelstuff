@@ -21,6 +21,8 @@ class Stuff(models.Model):
             booking__start__lte=day,
             booking__end__gte=day,
             stuff=self,
+        ).exclude(
+            booking__status='returned',
         )
 
         if exclude_item_pk:
@@ -36,9 +38,14 @@ class Booking(models.Model):
     contact = models.TextField(_('Contact'), blank=True)
     start = models.DateField(_('Start'))
     end = models.DateField(_('End'))
+    status = models.CharField(_('Status'), choices=[
+        ('waiting', _('waiting')),
+        ('delivered', _('delivered')),
+        ('returned', _('returned')),
+    ], max_length=16, default='waiting')
 
     class Meta:
-        ordering = ['-start', '-end', 'name']
+        ordering = ['-start', '-end', 'status', 'name']
 
     def __str__(self):
         return self.name

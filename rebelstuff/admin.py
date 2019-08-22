@@ -23,9 +23,10 @@ class BookingItemInline(admin.TabularInline):
 
 
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['name', 'start', 'end']
+    list_display = ['name', 'start', 'end', 'status']
     date_hierarchy = 'start'
     search_fields = ['name']
+    list_filter = ['status']
     inlines = [BookingItemInline]
 
 
