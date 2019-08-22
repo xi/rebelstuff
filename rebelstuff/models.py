@@ -1,5 +1,6 @@
 import datetime
 
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -12,14 +13,18 @@ class Stuff(models.Model):
     def __str__(self):
         return self.name
 
-    def available(self):
-        day = datetime.date.today()
+    def available(self, day=None, exclude_item_pk=None):
+        if day is None:
+            day = datetime.date.today()
 
         items = BookingItem.objects.filter(
             booking__start__lte=day,
             booking__end__gte=day,
             stuff=self,
         )
+
+        if exclude_item_pk:
+            items = items.exclude(pk=exclude_item_pk)
 
         agg = items.aggregate(models.Sum('amount'))
         booked = agg['amount__sum'] or 0
@@ -38,8 +43,39 @@ class Booking(models.Model):
     def __str__(self):
         return self.name
 
+    def clean(self):
+        if not self.start or not self.end:
+            return
+
+        if self.end < self.start:
+            raise ValidationError({
+                'end': _('Cannot be before start.'),
+            })
+
+    def iter_days(self):
+        day = self.start
+        while day <= self.end:
+            yield day
+            day += datetime.timedelta(days=1)
+
 
 class BookingItem(models.Model):
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
     stuff = models.ForeignKey(Stuff, on_delete=models.CASCADE)
     amount = models.PositiveIntegerField(_('Amount'))
+
+    def clean(self):
+        if not self.stuff or not self.amount:
+            return
+
+        if not self.booking.start or not self.booking.end:
+            return
+
+        available = min(
+            self.stuff.available(day, self.pk)
+            for day in self.booking.iter_days()
+        )
+        if self.amount > available:
+            raise ValidationError(
+                _('Not enough of this stuff. Only %i left.') % available,
+            )
