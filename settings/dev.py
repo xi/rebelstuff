@@ -21,3 +21,5 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+FEED_TOKEN = 'e7XATeGqQodsoyFbYKAEUZvUjsLMV7gE'

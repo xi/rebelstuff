@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse
 
 from django_ical.views import ICalFeed
@@ -12,6 +14,11 @@ STATUS_MAP = {
 }
 
 class BookingFeed(ICalFeed):
+    def __call__(self, request, *args, **kwargs):
+        if request.GET.get('token') != settings.FEED_TOKEN:
+            raise PermissionDenied()
+        return super().__call__(request, *args, **kwargs)
+
     def items(self):
         return Booking.objects.all()
 
