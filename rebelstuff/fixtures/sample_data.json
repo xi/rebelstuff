@@ -1,0 +1,192 @@
+[
+{
+    "model": "rebelstuff.stuff",
+    "pk": 1,
+    "fields": {
+        "name": "Micros",
+        "description": "",
+        "amount": 10
+    }
+},
+{
+    "model": "rebelstuff.stuff",
+    "pk": 2,
+    "fields": {
+        "name": "Microst\u00e4nder",
+        "description": "",
+        "amount": 8
+    }
+},
+{
+    "model": "rebelstuff.stuff",
+    "pk": 3,
+    "fields": {
+        "name": "Boxen",
+        "description": "",
+        "amount": 5
+    }
+},
+{
+    "model": "rebelstuff.stuff",
+    "pk": 4,
+    "fields": {
+        "name": "Steckdosen",
+        "description": "",
+        "amount": 10
+    }
+},
+{
+    "model": "rebelstuff.stuff",
+    "pk": 5,
+    "fields": {
+        "name": "Mischpult",
+        "description": "",
+        "amount": 1
+    }
+},
+{
+    "model": "rebelstuff.booking",
+    "pk": 1,
+    "fields": {
+        "name": "Bob",
+        "contact": "",
+        "start": "2019-08-23",
+        "end": "2019-08-24",
+        "status": "waiting"
+    }
+},
+{
+    "model": "rebelstuff.booking",
+    "pk": 2,
+    "fields": {
+        "name": "Alice",
+        "contact": "",
+        "start": "2019-08-18",
+        "end": "2019-08-22",
+        "status": "delivered"
+    }
+},
+{
+    "model": "rebelstuff.booking",
+    "pk": 3,
+    "fields": {
+        "name": "Carla",
+        "contact": "",
+        "start": "2019-08-05",
+        "end": "2019-09-02",
+        "status": "delivered"
+    }
+},
+{
+    "model": "rebelstuff.booking",
+    "pk": 4,
+    "fields": {
+        "name": "Dave",
+        "contact": "",
+        "start": "2019-08-15",
+        "end": "2019-08-17",
+        "status": "returned"
+    }
+},
+{
+    "model": "rebelstuff.booking",
+    "pk": 5,
+    "fields": {
+        "name": "Emma",
+        "contact": "",
+        "start": "2019-08-20",
+        "end": "2019-08-27",
+        "status": "returned"
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 1,
+    "fields": {
+        "booking": 1,
+        "stuff": 1,
+        "amount": 3
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 2,
+    "fields": {
+        "booking": 2,
+        "stuff": 1,
+        "amount": 1
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 3,
+    "fields": {
+        "booking": 2,
+        "stuff": 2,
+        "amount": 1
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 4,
+    "fields": {
+        "booking": 1,
+        "stuff": 2,
+        "amount": 3
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 5,
+    "fields": {
+        "booking": 1,
+        "stuff": 3,
+        "amount": 2
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 6,
+    "fields": {
+        "booking": 1,
+        "stuff": 5,
+        "amount": 1
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 7,
+    "fields": {
+        "booking": 1,
+        "stuff": 4,
+        "amount": 2
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 8,
+    "fields": {
+        "booking": 3,
+        "stuff": 1,
+        "amount": 2
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 9,
+    "fields": {
+        "booking": 4,
+        "stuff": 3,
+        "amount": 2
+    }
+},
+{
+    "model": "rebelstuff.bookingitem",
+    "pk": 10,
+    "fields": {
+        "booking": 5,
+        "stuff": 4,
+        "amount": 5
+    }
+}
+]
