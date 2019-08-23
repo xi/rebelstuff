@@ -14,6 +14,7 @@ RebelStuff allows you to keep track of …
 ## Quickstart
 
 ```
+sudo apt install python3 python3-pip gettext
 make
 ```
 
