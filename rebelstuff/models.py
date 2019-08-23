@@ -17,12 +17,18 @@ class Stuff(models.Model):
         if day is None:
             day = datetime.date.today()
 
+        bookings = Booking.objects.filter(
+            models.Q(status='delivered') |
+            models.Q(
+                ~models.Q(status='returned'),
+                start__lte=day,
+                end__gt=day,
+            )
+        )
+
         items = BookingItem.objects.filter(
-            booking__start__lte=day,
-            booking__end__gt=day,
+            booking__in=bookings,
             stuff=self,
-        ).exclude(
-            booking__status='returned',
         )
 
         if exclude_item_pk:
