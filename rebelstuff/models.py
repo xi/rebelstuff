@@ -19,7 +19,7 @@ class Stuff(models.Model):
 
         items = BookingItem.objects.filter(
             booking__start__lte=day,
-            booking__end__gte=day,
+            booking__end__gt=day,
             stuff=self,
         ).exclude(
             booking__status='returned',
@@ -54,9 +54,9 @@ class Booking(models.Model):
         if not self.start or not self.end:
             return
 
-        if self.end < self.start:
+        if self.end <= self.start:
             raise ValidationError({
-                'end': _('Cannot be before start.'),
+                'end': _('Must be after start.'),
             })
 
     def iter_days(self):
