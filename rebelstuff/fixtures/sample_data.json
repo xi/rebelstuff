@@ -5,7 +5,8 @@
     "fields": {
         "name": "Micros",
         "description": "",
-        "amount": 10
+        "amount": 10,
+        "price": 2
     }
 },
 {
@@ -14,7 +15,8 @@
     "fields": {
         "name": "Microst\u00e4nder",
         "description": "",
-        "amount": 8
+        "amount": 8,
+        "price": 1
     }
 },
 {
@@ -23,7 +25,8 @@
     "fields": {
         "name": "Boxen",
         "description": "",
-        "amount": 5
+        "amount": 5,
+        "price": 20
     }
 },
 {
@@ -32,7 +35,8 @@
     "fields": {
         "name": "Steckdosen",
         "description": "",
-        "amount": 10
+        "amount": 10,
+        "price": 1
     }
 },
 {
@@ -41,7 +45,8 @@
     "fields": {
         "name": "Mischpult",
         "description": "",
-        "amount": 1
+        "amount": 1,
+        "price": 25
     }
 },
 {

@@ -1,7 +1,9 @@
 import datetime
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
 
@@ -9,6 +11,7 @@ class Stuff(models.Model):
     name = models.CharField(_('Name'), max_length=64, unique=True)
     description = models.TextField(_('Description'), blank=True)
     amount = models.PositiveIntegerField(_('Amount'))
+    price = models.PositiveIntegerField(_('Price'))
 
     def __str__(self):
         return self.name
@@ -64,6 +67,17 @@ class Booking(models.Model):
             raise ValidationError({
                 'end': _('Must be after start.'),
             })
+
+    @cached_property
+    def price(self):
+        if not self.id:
+            return None
+
+        agg = self.bookingitem_set.aggregate(daily=models.Sum(
+            models.F('amount') * models.F('stuff__price')
+        ))
+        duration = self.end - self.start
+        return settings.PRICE_BASE + agg['daily'] * duration.days
 
     def iter_days(self):
         day = self.start

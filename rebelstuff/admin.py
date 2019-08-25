@@ -22,14 +22,19 @@ class StuffAdmin(admin.ModelAdmin):
 class BookingItemInline(admin.TabularInline):
     model = models.BookingItem
     autocomplete_fields = ['stuff']
+    readonly_fields = ['price']
+
+    def price(self, obj):
+        return obj.stuff.price
 
 
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['name', 'start', 'end', 'status']
+    list_display = ['name', 'start', 'end', 'status', 'price']
     date_hierarchy = 'start'
     search_fields = ['name']
     list_filter = ['status']
     inlines = [BookingItemInline]
+    readonly_fields = ['price']
 
 
 site = Site()
