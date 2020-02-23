@@ -106,3 +106,6 @@ CALENDAR_COLORS = [
     '#984ea3',
     '#ff7f00',
 ]
+
+CONTRACT_TEMPLATE = None
+CONTRACT_REFERENCE = None

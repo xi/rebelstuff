@@ -4,9 +4,11 @@ from django.conf import settings
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import models as auth_models
 from django.contrib import admin
+from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
 from . import models
+from .views import ContractView
 
 today = datetime.date.today()
 
@@ -39,6 +41,13 @@ class BookingAdmin(admin.ModelAdmin):
     list_filter = ['status']
     inlines = [BookingItemInline]
     readonly_fields = ['price']
+
+    def get_urls(self):
+        return [path(
+            '<int:pk>/contract/',
+            ContractView.as_view(),
+            name='rebelstuff_booking_contract',
+        )] + super().get_urls()
 
 
 site = Site()
