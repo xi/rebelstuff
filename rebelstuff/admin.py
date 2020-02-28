@@ -10,7 +10,6 @@ from . import models
 class Site(admin.AdminSite):
     site_header = 'RebelStuff'
     site_title = 'RebelStuff'
-    site_url = '/ical/?token=' + settings.FEED_TOKEN
     index_title = _('Home')
 
 
