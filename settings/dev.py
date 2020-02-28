@@ -22,6 +22,4 @@ DATABASES = {
     }
 }
 
-FEED_TOKEN = 'e7XATeGqQodsoyFbYKAEUZvUjsLMV7gE'
-
 PRICE_BASE = 10
