@@ -74,7 +74,7 @@
                         <div class="calendar-grid" style="grid-template-rows: repeat({{ stuff.amount }}, 1fr)">
                             {% for item in stuff|month_bookingitem_list:date_list %}
                                 {% for i in item.amount|range %}
-                                    <div class="calendar-item" style="grid-column-start: {{ item.start.day }}; grid-column-end: {{ item.end.day }}; border-color: red">
+                                    <div class="calendar-item" style="grid-column-start: {{ item.start.day }}; grid-column-end: {{ item.end.day }}; border-color: {{ item.booking.pk|calendar_color }}">
                                         <a class="calendar-link" href="{% url 'admin:rebelstuff_booking_change' item.booking.id %}">{{ item.booking.name }}</a>
                                     </div>
                                 {% endfor %}

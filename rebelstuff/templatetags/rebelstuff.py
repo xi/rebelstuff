@@ -1,4 +1,5 @@
 from django import template
+from django.conf import settings
 from django.db.models import Case, When, Value, F
 
 register = template.Library()
@@ -24,3 +25,8 @@ def month_bookingitem_list(stuff, date_list):
             default=F('booking__end'),
         ),
     )
+
+
+@register.filter
+def calendar_color(i):
+    return settings.CALENDAR_COLORS[i % len(settings.CALENDAR_COLORS)]
