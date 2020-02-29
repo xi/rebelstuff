@@ -23,3 +23,6 @@ DATABASES = {
 }
 
 PRICE_BASE = 10
+
+CONTRACT_TEMPLATE = os.path.join(BASE_DIR, 'example', 'content.xml')
+CONTRACT_REFERENCE = os.path.join(BASE_DIR, 'example', 'contract.odt')
