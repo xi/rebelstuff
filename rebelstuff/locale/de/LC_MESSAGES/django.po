@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-22 23:52+0000\n"
+"POT-Creation-Date: 2020-02-29 14:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,55 +18,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: rebelstuff/admin.py:12
+#: rebelstuff/admin.py:20
 msgid "Home"
 msgstr "Start"
 
-#: rebelstuff/models.py:9 rebelstuff/models.py:35
+#: rebelstuff/models.py:11 rebelstuff/models.py:46
 msgid "Name"
 msgstr "Name"
 
-#: rebelstuff/models.py:10
+#: rebelstuff/models.py:12
 msgid "Description"
 msgstr "Beschreibung"
 
-#: rebelstuff/models.py:11 rebelstuff/models.py:67
+#: rebelstuff/models.py:13 rebelstuff/models.py:92
 msgid "Amount"
 msgstr "Menge"
 
-#: rebelstuff/models.py:36
+#: rebelstuff/models.py:14
+msgid "Price"
+msgstr "Preis"
+
+#: rebelstuff/models.py:47
 msgid "Contact"
 msgstr "Kontakt"
 
-#: rebelstuff/models.py:37
+#: rebelstuff/models.py:48
 msgid "Start"
 msgstr "Start"
 
-#: rebelstuff/models.py:38
+#: rebelstuff/models.py:49
 msgid "End"
 msgstr "Ende"
 
-#: rebelstuff/models.py:39
+#: rebelstuff/models.py:50
 msgid "Status"
 msgstr "Status"
 
-#: rebelstuff/models.py:40
+#: rebelstuff/models.py:51
 msgid "waiting"
 msgstr "warten"
 
-#: rebelstuff/models.py:41
+#: rebelstuff/models.py:52
 msgid "delivered"
 msgstr "ausgeliehen"
 
-#: rebelstuff/models.py:42
+#: rebelstuff/models.py:53
 msgid "returned"
 msgstr "zurück"
 
-#: rebelstuff/models.py:54
-msgid "Cannot be before start."
-msgstr "Kann nicht vor dem Start sein"
+#: rebelstuff/models.py:68
+msgid "Must be after start."
+msgstr "Muss nach dem Start sein."
 
-#: rebelstuff/models.py:74
+#: rebelstuff/models.py:107
 #, python-format
 msgid "Not enough of this stuff. Only %i left."
 msgstr "Nicht genug Zeug. Nur noch %i verfügbar."
+
+#: rebelstuff/templates/admin/rebelstuff/change_form.html:6
+msgid "Contract"
+msgstr "Vertrag"
+
+#: rebelstuff/templates/rebelstuff/calendar.html:52
+msgid "Previous month"
+msgstr "Vorheriger Monat"
+
+#: rebelstuff/templates/rebelstuff/calendar.html:53
+msgid "Next month"
+msgstr "Nächster Monat"
+
+#: rebelstuff/views.py:41
+msgid "Calendar"
+msgstr "Kalender"
