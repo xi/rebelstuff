@@ -1,0 +1,88 @@
+{% extends "admin/base_site.html" %}
+{% load static i18n rebelstuff %}
+
+{% block content %}
+    <style>
+        .calendar {
+            width: 100%;
+        }
+        .calendar tr > :first-child {
+            width: 0;
+            text-align: start;
+            vertical-align: top;
+        }
+        .calendar thead th {
+            text-align: center;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-auto-flow: dense;
+            grid-template-columns: repeat({{ date_list|length }}, 1fr);
+        }
+        .calendar-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            padding: 0.2em;
+        }
+        .calendar-row.collapsed .calendar-link {
+            display: none;
+        }
+        .calendar-item {
+            border: 1px solid;
+        }
+        .calendar-button {
+            background: none;
+            border: 0;
+            padding: 0;
+            font: inherit;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('click', function(event) {
+            if (event.target.matches('.calendar-button')) {
+                var row = event.target.closest('.calendar-row');
+                row.classList.toggle('collapsed');
+            }
+        });
+    </script>
+
+    <ul class="object-tools">
+        <li><a href="{% url 'calendar' prev.year prev.month %}">{% trans 'Previous month' %}</a></li>
+        <li><a href="{% url 'calendar' next.year next.month %}">{% trans 'Next month' %}</a></li>
+    </ul>
+
+    <table class="calendar">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    <div class="calendar-grid">
+                        {% for date in date_list %}
+                            <time title="{{ date|date }}">{{ date.day }}</time>
+                        {% endfor %}
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stuff in stuff_list %}
+                <tr class="calendar-row collapsed">
+                    <th><button type="button" class="calendar-button" title="Expand/Collapse">{{ stuff.name }}</button></th>
+                    <td>
+                        <div class="calendar-grid" style="grid-template-rows: repeat({{ stuff.amount }}, 1fr)">
+                            {% for item in stuff|month_bookingitem_list:date_list %}
+                                {% for i in item.amount|range %}
+                                    <div class="calendar-item" style="grid-column-start: {{ item.start.day }}; grid-column-end: {{ item.end.day }}; border-color: red">
+                                        <a class="calendar-link" href="{% url 'admin:rebelstuff_booking_change' item.booking.id %}">{{ item.booking.name }}</a>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
