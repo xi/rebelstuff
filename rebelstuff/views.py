@@ -1,5 +1,6 @@
 import datetime
 import zipfile
+import time
 
 from django.conf import settings
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -24,8 +25,10 @@ class CalendarView(PermissionRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['stuff_list'] = Stuff.objects.all()
 
-        year = self.kwargs['year']
-        month = self.kwargs['month']
+        now = datetime.datetime.now()
+
+        year = self.kwargs['year'] if 'year' in self.kwargs else  now.year
+        month = self.kwargs['month'] if 'month' in self.kwargs else now.month
         context['date_list'] = []
         for i in range(31):
             try:
@@ -35,10 +38,11 @@ class CalendarView(PermissionRequiredMixin, TemplateView):
 
         day = datetime.timedelta(days=1)
         context['prev'] = context['date_list'][0] - day
+        context['curr'] = context['date_list'][0]
         context['next'] = context['date_list'][-1] + day
 
         # for django admin template
-        context['title'] = _('Calendar')
+        context['title'] = _('Calendar: %s' %context['curr'].strftime("%B %Y"))
         context['site_header'] = 'RebelStuff'
         context['site_title'] = 'RebelStuff'
         context['has_permission'] = True
