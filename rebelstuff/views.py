@@ -12,6 +12,7 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import BaseDetailView
+from dal import autocomplete
 
 from .models import Booking
 from .models import Stuff
@@ -93,3 +94,21 @@ class ContractView(PermissionRequiredMixin, BaseDetailView):
                     fh.write(content)
 
         return response
+    
+class StuffAutoComplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        if not self.request.user.is_authenticated:
+            return Stuff.objects.none()
+
+        qs = Stuff.objects.all()
+        
+        #filter out unavailable items
+        q_ids = [o.id for o in qs if o.available() > 0]
+        qs = qs.filter(id__in=q_ids)
+
+        if self.q:
+            
+            qs = qs.filter(name__istartswith=self.q)
+
+        return qs
