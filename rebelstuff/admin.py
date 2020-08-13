@@ -16,7 +16,7 @@ today = datetime.date.today()
 class Site(admin.AdminSite):
     site_header = 'RebelStuff'
     site_title = 'RebelStuff'
-    site_url = '/calendar/%i/%i/' % (today.year, today.month)
+    site_url = '/calendar/'
     index_title = _('Home')
 
 

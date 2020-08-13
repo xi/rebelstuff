@@ -51,8 +51,8 @@
     </script>    
 
     <ul class="object-tools">
-        <li><a href="{% url 'calendar' prev.year prev.month %}">{% trans 'Previous month' %}</a></li>
-        <li><a href="{% url 'calendar' next.year next.month %}">{% trans 'Next month' %}</a></li>
+        <li><a href="{% url 'calendar' %}?year={{ prev.year }}&month={{ prev.month }}">{% trans 'Previous month' %}</a></li>
+        <li><a href="{% url 'calendar' %}?year={{ next.year }}&month={{ next.month }}">{% trans 'Next month' %}</a></li>
     </ul>
 
     <table class="calendar">
