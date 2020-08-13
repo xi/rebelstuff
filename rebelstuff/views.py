@@ -1,6 +1,5 @@
 import datetime
 import zipfile
-import time
 
 from django.conf import settings
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -8,6 +7,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import Context
 from django.template import Template
+from django.utils import formats
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
@@ -26,10 +26,9 @@ class CalendarView(PermissionRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['stuff_list'] = Stuff.objects.all()
 
-        now = datetime.datetime.now()
-
-        year = self.kwargs['year'] if 'year' in self.kwargs else  now.year
-        month = self.kwargs['month'] if 'month' in self.kwargs else now.month
+        today = datetime.date.today()
+        year = int(self.request.GET.get('year', today.year))
+        month = int(self.request.GET.get('month', today.month))
         context['date_list'] = []
         for i in range(31):
             try:
@@ -39,11 +38,11 @@ class CalendarView(PermissionRequiredMixin, TemplateView):
 
         day = datetime.timedelta(days=1)
         context['prev'] = context['date_list'][0] - day
-        context['curr'] = context['date_list'][0]
         context['next'] = context['date_list'][-1] + day
 
         # for django admin template
-        context['title'] = _('Calendar: %s' %context['curr'].strftime("%B %Y"))
+        formatted_date = formats.date_format(context['date_list'][0], 'F Y')
+        context['title'] = _('Calendar') + ' ' + formatted_date
         context['site_header'] = 'RebelStuff'
         context['site_title'] = 'RebelStuff'
         context['has_permission'] = True

@@ -12,11 +12,6 @@ urlpatterns = [
         views.CalendarView.as_view(),
         name='calendar',
     ),
-    path(
-        'calendar/<int:year>/<int:month>/',
-        views.CalendarView.as_view(),
-        name='calendar',
-    ),
     url(
         r'^stuff-autocomplete/$',
         views.StuffAutoComplete.as_view(model=models.Stuff),
