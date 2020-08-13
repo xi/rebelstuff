@@ -7,12 +7,27 @@ from django.utils.translation import gettext_lazy as _
 from . import models
 from .views import ContractView
 
+CALENDAR_ITEM = {
+    'name': _('Calendar'),
+    'admin_url': '/calendar/',
+    'view_only': True,
+}
+
 
 class Site(admin.AdminSite):
     site_header = 'RebelStuff'
     site_title = 'RebelStuff'
-    site_url = '/calendar/'
+    site_url = None
     index_title = _('Home')
+
+    def _build_app_dict(self, request, label=None):
+        app_dict = super()._build_app_dict(request, label=label)
+        if request.user.has_perm('rebelstuff.view_booking'):
+            if 'rebelstuff' in app_dict:
+                app_dict['rebelstuff']['models'].append(CALENDAR_ITEM)
+            elif app_dict.get('app_label') == 'rebelstuff':
+                app_dict['models'].append(CALENDAR_ITEM)
+        return app_dict
 
 
 class StuffAdmin(admin.ModelAdmin):
