@@ -7,6 +7,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import Context
 from django.template import Template
+from django.utils import formats
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
@@ -39,7 +40,8 @@ class CalendarView(PermissionRequiredMixin, TemplateView):
         context['next'] = context['date_list'][-1] + day
 
         # for django admin template
-        context['title'] = _('Calendar')
+        formatted_date = formats.date_format(context['date_list'][0], 'F Y')
+        context['title'] = _('Calendar') + ' ' + formatted_date
         context['site_header'] = 'RebelStuff'
         context['site_title'] = 'RebelStuff'
         context['has_permission'] = True
