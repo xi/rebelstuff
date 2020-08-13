@@ -86,9 +86,19 @@ class Booking(models.Model):
             day += datetime.timedelta(days=1)
 
 
+def available_stuff_ids():
+    return {
+        'id__in': [o.id for o in Stuff.objects.all() if o.available() > 0],
+    }
+
+
 class BookingItem(models.Model):
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
-    stuff = models.ForeignKey(Stuff, on_delete=models.CASCADE)
+    stuff = models.ForeignKey(
+        Stuff,
+        on_delete=models.CASCADE,
+        limit_choices_to=available_stuff_ids,
+    )
     amount = models.PositiveIntegerField(_('Amount'))
 
     def clean(self):
