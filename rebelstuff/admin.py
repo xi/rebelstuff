@@ -3,11 +3,10 @@ from django.contrib.auth import models as auth_models
 from django.contrib import admin
 from django.urls import path
 from django.utils.translation import gettext_lazy as _
-from dal import autocomplete
 
 from . import models
+from .forms import BookingItemForm
 from .views import ContractView
-from .forms import BookingItemForm1
 
 
 class Site(admin.AdminSite):
@@ -24,8 +23,7 @@ class StuffAdmin(admin.ModelAdmin):
 
 class BookingItemInline(admin.TabularInline):
     model = models.BookingItem
-    form = BookingItemForm1    
-    
+    form = BookingItemForm
     readonly_fields = ['price']
 
     def price(self, obj):
@@ -33,15 +31,16 @@ class BookingItemInline(admin.TabularInline):
 
     class Media:
         css = {
-            'all': ('autocomplete_light/select2.css', 'disable-add-related.css',)
+            'all': ['autocomplete_light/select2.css', 'disable-add-related.css']
         }
-        js = (
+        js = [
             'autocomplete_light/jquery.init.js',
             'autocomplete_light/jquery.post-setup.js',
             'autocomplete_light/autocomplete.init.js',
             'autocomplete_light/forward.js',
             'autocomplete_light/select2.js',
-        )
+        ]
+
 
 class BookingAdmin(admin.ModelAdmin):
     list_display = ['name', 'start', 'end', 'status', 'price']
@@ -57,7 +56,6 @@ class BookingAdmin(admin.ModelAdmin):
             ContractView.as_view(),
             name='rebelstuff_booking_contract',
         )] + super().get_urls()
-
 
 
 site = Site()

@@ -12,9 +12,9 @@ class Stuff(models.Model):
     description = models.TextField(_('Description'), blank=True)
     amount = models.PositiveIntegerField(_('Amount'))
     price = models.PositiveIntegerField(_('Price'))
-    
+
     def __str__(self):
-        return self.name    
+        return self.name
 
     def available(self, day=None, exclude_item_pk=None):
         if day is None:
