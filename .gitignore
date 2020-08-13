@@ -1,3 +1,4 @@
 *.sqlite3
 *.mo
 .venv
+__pycache__/
