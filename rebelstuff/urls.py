@@ -1,5 +1,4 @@
 from django.urls import path
-from django.conf.urls import url
 
 from . import views
 from . import models
@@ -12,9 +11,9 @@ urlpatterns = [
         views.CalendarView.as_view(),
         name='calendar',
     ),
-    url(
-        r'^stuff-autocomplete/$',
-        views.StuffAutoComplete.as_view(model=models.Stuff),
+    path(
+        'stuff-autocomplete/',
+        views.StuffAutoComplete.as_view(),
         name='stuff-autocomplete',
     ),
 ]
