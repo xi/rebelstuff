@@ -1,5 +1,3 @@
-import datetime
-
 from django.conf import settings
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import models as auth_models
@@ -10,13 +8,11 @@ from django.utils.translation import gettext_lazy as _
 from . import models
 from .views import ContractView
 
-today = datetime.date.today()
-
 
 class Site(admin.AdminSite):
     site_header = 'RebelStuff'
     site_title = 'RebelStuff'
-    site_url = '/calendar/%i/%i/' % (today.year, today.month)
+    site_url = '/calendar/'
     index_title = _('Home')
 
 

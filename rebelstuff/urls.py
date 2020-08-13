@@ -6,7 +6,7 @@ from .admin import site
 urlpatterns = [
     path('', site.urls),
     path(
-        'calendar/<int:year>/<int:month>/',
+        'calendar/',
         views.CalendarView.as_view(),
         name='calendar',
     ),

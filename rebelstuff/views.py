@@ -24,8 +24,9 @@ class CalendarView(PermissionRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['stuff_list'] = Stuff.objects.all()
 
-        year = self.kwargs['year']
-        month = self.kwargs['month']
+        today = datetime.date.today()
+        year = int(self.request.GET.get('year', today.year))
+        month = int(self.request.GET.get('month', today.month))
         context['date_list'] = []
         for i in range(31):
             try:
