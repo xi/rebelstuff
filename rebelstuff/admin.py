@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import models as auth_models
 from django.contrib import admin
