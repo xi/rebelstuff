@@ -2,7 +2,7 @@
 {% load i18n admin_urls %}
 
 {% block object-tools-items %}
-    {% if opts.label == 'rebelstuff.Booking' %}
+    {% if opts.label == 'rebelstuff.Booking' and CONTRACT_TEMPLATE %}
         <li><a href="{% url opts|admin_urlname:'contract' original.pk %}">{% trans 'Contract' %}</a></li>
     {% endif %}
     {{ block.super }}
